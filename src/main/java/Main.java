@@ -81,15 +81,17 @@ public class Main {
 //    		person.forEach(System.out::println);
 //    		System.out.println();
 //    	});
-
+   
     people.stream()
-    	.filter(person -> person.getGender().equals(Gender.MALE))
-    	.max(Comparator.comparing(Person::getAge))
-    	.ifPresent(man -> System.out.println(man.getName()));
+    	.filter(person -> person.getName().length() > 8)
+    	.sorted(Comparator.comparing(Person::getAge))
+    	.collect(Collectors.toList())
+    	.forEach(System.out::println);
+    
   }
   private static List<Person> getPeople() {
     return List.of(
-        new Person("Antonio", 20, Gender.MALE),
+        new Person("Antonio", 14, Gender.MALE),
         new Person("Alina Smith", 33, Gender.FEMALE),
         new Person("Helen White", 57, Gender.FEMALE),
         new Person("Alex Boz", 14, Gender.MALE),
